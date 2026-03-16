@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Main Tool - BJC Eloading</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>BJC Eloading Main Tool</h2>
+<p>Welcome to the main tool page.</p>
+<p>Current Version: <span id="currentVersion">...</span></p>
+
+<!-- Menu Links -->
+<nav>
+  <ul>
+    <li><a href="utility.html">Utility</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="activate.html">Activate</a></li>
+    <li><a href="contacts.html">Contacts</a></li>
+  </ul>
+</nav>
+
+<!-- Example Button -->
+<button id="testBtn">Test Button</button>
+
+<!-- Update Popup -->
+<div id="updatePopup">
+    <p id="popupText">New update available!</p>
+    <button id="updateNowBtn">Update Now</button>
+</div>
+
+<script>
+const baseURL = "https://bjchack.github.io/bjc_apps/";
+const versionURL = baseURL + "version.json";
+const offlineHTML = "<p>Offline: main tool content not loaded.</p>";
+
+// Function to fetch HTML/JS/CSS
+function fetchAndUpdate(data){
+    const container = document.getElementById("appContent") || document.body;
+
+    // Display version
+    document.getElementById("currentVersion").innerText = data.version;
+
+    // Load main HTML content (here it's this page, so optional)
+    localStorage.setItem("appVersion", data.version);
+
+    // Load CSS
+    let link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = baseURL + data.css;
+    document.head.appendChild(link);
+
+    // Load JS
+    data.js.forEach(jsFile => {
+        let script = document.createElement("script");
+        script.src = baseURL + jsFile;
+        document.body.appendChild(script);
+    });
+}
+
+// Load content and check for updates
+function loadAppContent(checkUpdate=false){
+    if(navigator.onLine){
+        fetch(versionURL)
+        .then(res => res.json())
+        .then(data => {
+            const savedVersion = localStorage.getItem("appVersion") || "0";
+            if(checkUpdate && savedVersion !== data.version){
+                document.getElementById("popupText").innerText = `New update available! Version ${data.version}`;
+                document.getElementById("updatePopup").style.display = "block";
+
+                document.getElementById("updateNowBtn").onclick = () => {
+                    fetchAndUpdate(data);
+                    document.getElementById("updatePopup").style.display = "none";
+                };
+            }
+            fetchAndUpdate(data);
+        })
+        .catch(err => {
+            console.error("Version fetch failed:", err);
+        });
+    }
+}
+
+loadAppContent(true);
+</script>
+
+</body>
+</html>
