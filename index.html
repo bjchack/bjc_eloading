@@ -139,6 +139,12 @@ header h1 {
   <a href="product.html" class="button-box"><img src="icons/product.png" alt="Product Codes"><span>Product Codes</span></a>
 </div>
 
+  <script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/bjc_eloading/sw.js");
+}
+  </script>
+  
 <script>
 function toggleDropdown() {
   const menu = document.getElementById('menuDropdown');
