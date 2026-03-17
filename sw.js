@@ -5,7 +5,10 @@ const urlsToCache = [
   "/bjc_eloading/eload.html",
   "/bjc_eloading/style.css",
   "/bjc_eloading/script.js",
-  "/bjc_eloading/images/tarp.png"
+  "/bjc_eloading/images/tarp.png",
+  "/bjc_eloading/icons/eload.png",
+  "/bjc_eloading/icons/cable.png",
+  "/bjc_eloading/icons/balance.png"
 ];
 
 self.addEventListener("install", e => {
