@@ -1,6 +1,6 @@
 {
   "version": "1.2",
-  "html": ["tool.html","main_tool.html"],
+  "html": ["tool.html","index.html"],
   "css": "style.css",
   "js": ["script.js","update.js"]
 }
