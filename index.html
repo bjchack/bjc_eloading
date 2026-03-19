@@ -4,48 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BJC Dashboard</title>
-
-<!-- 🔥 AUTO UPDATE SCRIPT (HEAD) -->
-<script>
-const CURRENT_VERSION = "1.0";
-
-async function checkUpdate(){
-  try{
-    let res = await fetch("https://bjchack.github.io/bjc_eloading/version.json");
-    let data = await res.json();
-
-    document.getElementById("latestVersion") && (document.getElementById("latestVersion").innerText = data.version);
-    document.getElementById("currentVersion") && (document.getElementById("currentVersion").innerText = CURRENT_VERSION);
-
-    if(data.version !== CURRENT_VERSION){
-      document.getElementById("updateBadge").style.display = "inline";
-      document.getElementById("updateBadge").onclick = () => updateApp(data);
-    }
-  }catch(e){
-    console.log("Update check failed");
-  }
-}
-
-async function updateApp(data){
-  document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:50%;'>Updating app... Please wait</h2>";
-
-  for(let file of data.files){
-    let res = await fetch("https://bjchack.github.io/bjc_eloading/" + file);
-    let text = await res.text();
-    localStorage.setItem(file, text);
-  }
-
-  localStorage.setItem("app_version", data.version);
-
-  setTimeout(()=>{
-    alert("App Updated!");
-    location.reload();
-  },1000);
-}
-</script>
-
 <style>
-/* SAME STYLE MO (DI KO NA BINAGO) */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -61,7 +20,10 @@ header {
   border-bottom: 1px solid #333;
   position: relative;
 }
-header h1 { margin: 0; font-size: 20px; }
+header h1 {
+  margin: 0;
+  font-size: 20px;
+}
 .menu-btn {
   background: #333;
   border: none;
@@ -70,7 +32,12 @@ header h1 { margin: 0; font-size: 20px; }
   padding: 6px 10px;
   cursor: pointer;
   border-radius: 4px;
+  transition: 0.2s;
 }
+.menu-btn:hover {
+  background: #555;
+}
+/* Dropdown menu */
 .dropdown {
   display: none;
   position: absolute;
@@ -79,13 +46,21 @@ header h1 { margin: 0; font-size: 20px; }
   background: #222;
   border: 1px solid #333;
   border-radius: 6px;
+  min-width: 150px;
+  z-index: 1000;
 }
 .dropdown a {
   display: block;
   padding: 10px;
   color: white;
   text-decoration: none;
+  font-size: 14px;
 }
+.dropdown a:hover {
+  background: #333;
+}
+
+/* Dashboard grid */
 .dashboard {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -96,102 +71,99 @@ header h1 { margin: 0; font-size: 20px; }
   background: #222;
   border-radius: 6px;
   border: 1px solid #333;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   aspect-ratio: 1/1;
+  transition: 0.2s;
+  text-decoration: none; 
+}
+.button-box:hover {
+  background: #333;
+  transform: translateY(-2px);
+}
+.button-box img {
+  width: 28px;
+  height: 28px;
+  margin-bottom: 5px;
+}
+.button-box span {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  word-wrap: break-word;
+  color: white;
+  text-shadow: 1px 1px 2px #000;
   text-decoration: none;
-}
-.button-box span { color:white; }
-
-#loadingScreen {
-  position: fixed;
-  width:100%;
-  height:100%;
-  background:#111;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
-}
-
-#offlineMsg {
-  display:none;
-  position:fixed;
-  bottom:0;
-  width:100%;
-  background:red;
-  text-align:center;
-  padding:8px;
 }
 </style>
 </head>
-
 <body>
 
-<!-- 🔥 LOAD UPDATED VERSION -->
-<script>
-let updated = localStorage.getItem("index.html");
-if(updated){
-  document.open();
-  document.write(updated);
-  document.close();
-}
-</script>
-
-<div id="loadingScreen">Loading BJC App...</div>
-<div id="offlineMsg">⚠️ No Internet - Offline Mode</div>
-
 <header>
-<h1>BJC Dashboard</h1>
-<button class="menu-btn" onclick="toggleDropdown()">☰</button>
-<div id="menuDropdown" class="dropdown">
-<a href="tarp.html">Free Tarp</a>
-<a href="admin/admin.html">Admin</a>
-<a href="contacts.html">Contacts</a>
-<a href="about.html">About</a>
-</div>
+  <h1>BJC Dashboard</h1>
+  <button class="menu-btn" onclick="toggleDropdown()">☰</button>
+  <div id="menuDropdown" class="dropdown">
+    <a href="tarp.html">Free Tarp Download</a>
+    <a href="admin/admin.html">Admin</a>
+    <a href="settings.html">Settings</a>
+    <a href="contacts.html">Contacts</a>
+    <a href="about.html">About</a>
+    <a href="#">Developed by BJC</a>
+  </div>
 </header>
 
 <div class="dashboard">
-<a href="eload.html" class="button-box"><span>E-Load</span></a>
-<a href="cable.html" class="button-box"><span>Cable</span></a>
-<a href="utility.html" class="button-box"><span>Bills</span></a>
+  <a href="eload.html" class="button-box"><img src="icons/eload.png" alt="E-Load"><span>E-Load</span></a>
+  <a href="epins.html" class="button-box"><img src="icons/epins.png" alt="e-PINs"><span>e-PINs</span></a>
+  <a href="direct.html" class="button-box"><img src="icons/direct.png" alt="Direct Loading"><span>Direct Loading</span></a>
+
+  <a href="cable.html" class="button-box"><img src="icons/cable.png" alt="Product Codes"><span>Cable</span></a>
+  <a href="wifi.html" class="button-box"><img src="icons/fiber.png" alt="WIFI/Fiber"><span>WIFI/Fiber</span></a>
+  <a href="soon.html" class="button-box"><img src="icons/streaming.png" alt="Streaming"><span>Streaming</span></a>
+
+  <a href="utility.html" class="button-box"><img src="icons/bills.png" alt="Utility / Bills"><span>Utility / Bills</span></a>
+  <a href="soon.html" class="button-box"><img src="icons/peso.png" alt="Peso Credit (PC)"><span>Peso Credit (PC)</span></a>
+  <a href="history.html" class="button-box"><img src="icons/history.png" alt="Load History"><span>Load History</span></a>
+
+  <a href="soon.html" class="button-box"><img src="icons/gateway.png" alt="Gateways"><span>Gateways</span></a>
+  <a href="soon.html" class="button-box"><img src="icons/health.png" alt="Konsulta MD"><span>Konsulta MD</span></a>
+  <a href="refund.html" class="button-box"><img src="icons/refund.png" alt="Refund"><span>Refund</span></a>
+
+  <a href="contacts.html" class="button-box"><img src="icons/contacts.png" alt="Contacts"><span>Contacts</span></a>
+  <a href="soon.html" class="button-box"><img src="icons/collectibles.png" alt="Collectibles"><span>Collectibles</span></a>
+  <a href="bal.html" class="button-box"><img src="icons/balance.png" alt="Balance"><span>Balance</span></a>
+
+  <a href="activate.html" class="button-box"><img src="icons/activate.png" alt="Activate SIM"><span>Activate SIM</span></a>
+  <a href="product.html" class="button-box"><img src="icons/product.png" alt="Product Codes"><span>Product Codes</span></a>
 </div>
 
-<!-- VERSION INFO -->
-<div style="text-align:center; margin-top:10px;">
-Current: <span id="currentVersion"></span> |
-Latest: <span id="latestVersion"></span>
-<span id="updateBadge" style="display:none;color:orange;cursor:pointer;"> Update Available</span>
+<script>
+function toggleDropdown() {
+  const menu = document.getElementById('menuDropdown');
+  menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+}
+window.onclick = function(event) {
+  if(!event.target.matches('.menu-btn')) {
+    const dropdowns = document.getElementById('menuDropdown');
+    if(dropdowns.style.display === 'block') {
+      dropdowns.style.display = 'none';
+    }
+  }
+}
+</script>
+
+<!-- Version info (SAFE, no auto-update) -->
+<div id="versionInfo" style="color:white; text-align:center; margin-top:10px; font-family:sans-serif;">
+  Current Version: <span id="currentVersion">1.0</span> |
+  Latest Version: <span id="latestVersion">1.0</span>
+  <span id="updateBadge" style="display:none; color:#ff9800; font-weight:bold; margin-left:10px; cursor:pointer;">New Update!</span>
 </div>
 
-<footer style="text-align:center; padding:15px;">
-© 2026 BJC Eload
+<footer style="text-align:center; padding:15px; background:#111; color:#fff;">
+© 2026 BJC Eload | All Rights Reserved
 </footer>
-
-<!-- SCRIPTS -->
-<script>
-function toggleDropdown(){
-  let m = document.getElementById("menuDropdown");
-  m.style.display = m.style.display === "block" ? "none" : "block";
-}
-
-window.onload = function(){
-  document.getElementById("loadingScreen").style.display = "none";
-  checkUpdate();
-}
-</script>
-
-<script>
-function updateOnlineStatus(){
-  document.getElementById("offlineMsg").style.display = navigator.onLine ? "none" : "block";
-}
-window.addEventListener("online", updateOnlineStatus);
-window.addEventListener("offline", updateOnlineStatus);
-updateOnlineStatus();
-</script>
-
 </body>
 </html>
