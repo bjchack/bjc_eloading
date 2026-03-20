@@ -15,9 +15,15 @@
     "price": "2450",
     "img": "https://bjchack.github.io/bjc_eloading/images/zlt.jpg"
   },
+  
   {
-    "name": "Sold Item",
-    "price": "100",
+    "name": "Globe UNLIMITED INTERNE",
+    "price": "1200",
+    "img": "https://bjchack.github.io/bjc_eloading/images/zlt.jpg"
+  },
+  {
+    "name": "Not Availble",
+    "price": "00",
     "img": "https://bjchack.github.io/bjc_eloading/images/soon.jpg"
   }
 ]
