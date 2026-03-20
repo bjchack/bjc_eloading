@@ -1,16 +1,17 @@
 [
   {
-    "image": "https://bjchack.github.io/bjc_eloading/images/zlt.jpg",
-    "price": "₱950",
-    "desc": "ZLT S10G OPENLINE",
-    "contact": "09302951895",
-    "message": "From: BJC Eloading app Inquiry ZLT S10G OPENLINE Price ₱950 Please Reply Sir."
+    "name": "ZLT S10G OPENLINE",
+    "price": "950",
+    "img": "https://bjchack.github.io/bjc_eloading/images/zlt.jpg"
   },
   {
-    "image": "https://bjchack.github.io/bjc_eloading/images/5g.png",
-    "price": "₱890",
-    "desc": "WIFI 4G/5G OPENLINE READY TO USE Buy now",
-    "contact": "09302951895",
-    "message": "From: BJC Eloading app Inquiry WIFI 4G/5G OPENLINE Price ₱890 Please Reply Sir."
+    "name": "WIFI 4G/5G OPENLINE",
+    "price": "890",
+    "img": "https://bjchack.github.io/bjc_eloading/images/5g.png"
+  },
+  {
+    "name": "Sold Item",
+    "price": "100",
+    "img": "https://bjchack.github.io/bjc_eloading/images/soon.jpg"
   }
 ]
