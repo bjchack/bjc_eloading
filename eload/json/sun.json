@@ -1,5 +1,16 @@
 [
-  {"code":"G10","price":10,"days":"1 day","desc":"1GB Open Access"},
-  {"code":"G20","price":20,"days":"3 days","desc":"2GB Open Access"},
-  {"code":"G50","price":50,"days":"7 days","desc":"5GB Open Access"}
+  {"code":"CTC10","desc":"10 mins call to Sun/Smart/TNT + 100 texts all networks + 100MB FB every day + non-stop chat","days":"1 day"},
+  {"code":"CTC20","desc":"25 mins call to Sun/Smart/TNT + 200 texts all networks + 100MB FB every day + non-stop chat","days":"3 days"},
+
+  {"code":"TU50","desc":"100MB/day FB + All Day Chat + 60 Trinet mins + Unli allnet texts","days":"10 days"},
+  {"code":"TU150","desc":"100MB/day FB + All Day Chat + 300 Trinet mins + Unli allnet texts","days":"30 days"},
+  {"code":"TU200","desc":"100MB/day FB + All Day Chat + 300 Quadnet mins + 100 texts per day","days":"30 days"},
+
+  {"code":"SSP20","desc":"30MB data + Unli allnet texts + Unli Trinet calls (Sun, Smart & TNT)","days":"2 days"},
+  {"code":"SSP99","desc":"1GB data + Unli allnet texts + Unli Trinet calls (Sun, Smart & TNT) + 30 mins call to other networks","days":"7 days"},
+  {"code":"SSP249","desc":"2GB data + Unli allnet texts + Unli Trinet calls (Sun, Smart & TNT) + 60 mins call to other networks","days":"30 days"},
+
+  {"code":"SG50","desc":"1GB Video Everyday (YouTube, iflix, NBA, iWant, Cignal) + Unli texts","days":"3 days"},
+  {"code":"SG99","desc":"2GB open access data + 1GB Video Everyday (YouTube, iflix, NBA, iWant, Cignal)","days":"7 days"},
+  {"code":"SG299","desc":"4GB open access data + 1GB Video Everyday (YouTube, iflix, NBA, iWant, Cignal)","days":"30 days"}
 ]
