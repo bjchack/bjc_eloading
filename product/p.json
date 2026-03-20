@@ -1,13 +1,19 @@
 [
   {
     "name": "ZLT S10G OPENLINE",
-    "price": "950",
+    "price": "1000",
     "img": "https://bjchack.github.io/bjc_eloading/images/zlt.jpg"
   },
   {
     "name": "WIFI 4G/5G OPENLINE",
     "price": "890",
     "img": "https://bjchack.github.io/bjc_eloading/images/5g.png"
+  },
+  
+  {
+    "name": "ZLT S10G OPENLINE free Plan unlimited intenet",
+    "price": "2450",
+    "img": "https://bjchack.github.io/bjc_eloading/images/zlt.jpg"
   },
   {
     "name": "Sold Item",
